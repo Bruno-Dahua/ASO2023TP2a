@@ -4,19 +4,36 @@
 #define NUMBER_OF_THREADS 2
 #define CANTIDAD_INICIAL_HAMBURGUESAS 20
 int cantidad_restante_hamburguesas = CANTIDAD_INICIAL_HAMBURGUESAS; 
-
+int turnos=0;
 
 void *comer_hamburguesa(void *tid) { 
 while(1 == 1){ //repetir infinitamente hasta que fuerce la terminacion del hilo con pthread_exit
 	
-	if (cantidad_restante_hamburguesas > 0) {
-	printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
-	cantidad_restante_hamburguesas--; //me como una hamburguesa
-	} else
+	
+	while (cantidad_restante_hamburguesas > 0) {
+		while (turnos!=tid)
+		{
+
+		}
+		if (cantidad_restante_hamburguesas>0){
+		printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
+		cantidad_restante_hamburguesas--; //me como una hamburguesa
+		}
+
+	if (turnos!=0)
 	{
+		turnos=0;
+	}
+	else
+	{
+		turnos=1;
+	}
+	}
 	printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
 	pthread_exit(NULL); //forzar terminacion del hilo
-	}
+	
+	
+	
 
 }
 

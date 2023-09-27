@@ -1,0 +1,2 @@
+-Los hilos no trabajaban correctamente. Un comensal se come todas las hamburguesas. Depende de cada ejecucion, hay resultados diferentes.
+-La falla se llama Race Condition.
